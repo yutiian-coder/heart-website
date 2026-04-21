@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>爱心特效</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            min-height: 100vh;
+            background-color: #000;
+            overflow: hidden;
+        }
+        .heart {
+            position: absolute;
+            pointer-events: none;
+            animation: animate 1s linear forwards;
+        }
+        @keyframes animate {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+<script>
+    document.addEventListener('mousemove', function(e) {
+        // 创建爱心元素
+        let heart = document.createElement('span');
+        heart.className = 'heart';
+        heart.innerHTML = '❤️';
+        heart.style.left = e.clientX + 'px';
+        heart.style.top = e.clientY + 'px';
+        
+        // 随机大小和颜色
+        let size = Math.random() * 20 + 10 + 'px';
+        heart.style.fontSize = size;
+        
+        document.body.appendChild(heart);
+        
+        // 700ms后移除爱心
+        setTimeout(() => {
+            heart.remove();
+        }, 700);
+    });
+</script>
+</body>
+</html>
